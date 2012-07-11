@@ -1,0 +1,94 @@
+/* CSS for Debian-Administration.org.
+ * 
+ * $Id: style.css,v 1.2 2005-11-06 00:25:20 steve Exp $
+ *
+ */
+
+
+/*
+ *  Main body.
+ */
+
+body {
+	padding: 0 10px;
+	padding-top: 1px;
+	padding-bottom: 1em;
+	border-left: 1px solid rgb(128, 128, 128);
+	background-color: white;
+	color: black;
+	margin-left: 185px;
+}
+
+
+div.content {
+	text-align: justify;
+	padding: 0 20px;
+	margin: 0;
+	margin-top: 5px;
+}
+
+
+/*
+ * Styling for the two side columns, and their contained items.
+ */
+div#sidebar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 165px;
+	font-family: sans-serif;
+	font-size: 80%;
+	padding: 0 10px;
+	background-color: white;
+	margin: 0;
+}
+
+div#sidebar ul {
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+
+div#sidebar li {
+	margin: 1ex;
+	padding: 0 0 1.25ex 0.75ex;
+	font-size: 95%;
+}
+
+div#sidebar li a {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+div#content h2 {
+	text-align: center;
+}
+
+div#content pre {
+	overflow:       auto;
+        background:     rgb(230,230,230);
+        border:         solid;
+        border-width:   thin;
+
+}
+
+#footer {
+        color: black;
+        font-size: 92%;
+        text-align: center;
+        line-height: 1.25em;
+        margin: 0;
+        padding: 1em 4mm 1em 4mm;
+        clear: both;
+        border-top: 1px solid rgb(216,210,195);
+}
+
+#footer div {
+        margin: 0;
+        padding: 0 0 1ex 0;
+}
+
+#footer p {
+        text-align: right;
+}

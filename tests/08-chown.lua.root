@@ -1,0 +1,9 @@
+--
+--  Disabled by default, non-root users cannot chmod().
+--
+
+fs = require( "libfs" );
+
+
+fs.chown( "08-chown.lua", "root", "root" );
+fs.chown( "08-chown.lua", "skx", "skx" );

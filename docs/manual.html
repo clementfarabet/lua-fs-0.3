@@ -1,0 +1,196 @@
+<html>
+ <head><title>API Documentation for lua-fs</title>
+ <link rel="stylesheet" type="text/css" href="style.css" media="screen" title="Default Layout">
+</head>
+ <body>
+
+
+<div id="sidebar">
+<ul>
+<li><a href="index.html">Index</a></li>
+<li><a href="using.html">Using lua-fs</a></li>
+<li><a href="manual.html">lua-fs API</a></li>
+<li><a href="examples.html">Example Code</a></li>
+</ul>
+</div>
+
+<div id="content">
+ <h2>API Documentation</h2>
+ <blockquote>
+ <p>This page documents the functions presented by the <tt>lua-fs</tt> filesystem extension library.</p>
+ <p>If you've just started working with the library you should look at how to <a href="using.html">load and use the extension</a> in your scripts before reading this documentation.</p>
+ </blockquote>
+
+
+ <h3>Filesystem Primitives Overview</h3>
+ <blockquote>
+ <p>The filesystem extension implements and exports the following primitives:</p>
+ <dl>
+ <dt><tt><a href="#chdir">chdir()</a></tt></dt>
+ <dd><p>Change the current working directory (CWD) for the current Lua script.</p></dd>
+ <dt><tt><a href="#chmod">chmod()</a></tt></dt>
+ <dd><p>Change the file permissions for the given file or directory.</p></dd>
+ <dt><tt><a href="#chown">chown()</a></tt></dt>
+ <dd><p>Change the owner and group for the specified file or directory.</p></dd>
+ <dt><tt><a href="#cwd">cwd()</a></tt></dt>
+ <dd><p>Return the current working directory (CWD).</p></dd>
+ <dt><tt><a href="#is_dir">is_dir()</a></tt></dt>
+ <dd><p>A utility function to quickly test whether a given name is a directory.</p></dd>
+ <dt><tt><a href="#is_file">is_file()</a></tt></dt>
+ <dd><p>A utility function to quickly test whether a given name is a file.</p></dd>
+ <dt><tt><a href="#mkdir">mkdir()</a></tt></dt>
+ <dd><p>Create a directory.</p></dd>
+ <dt><tt><a href="#readdir">readdir()</a></tt></dt>
+ <dd><p>Read all the files contained within a directory.</p></dd>
+ <dt><tt><a href="#rmdir">rmdir()</a></tt></dt>
+ <dd><p>Delete, or remove, a directory.</p></dd>
+ <dt><tt><a href="#stat">stat()</a></tt></dt>
+ <dd><p>Return detailed information about the given directory, or file.</p></dd>
+ </dl>
+ </blockquote>
+ 
+
+ <h3>Detailed API Documentation</h3>
+ <blockquote>
+ <h4 id="chdir">chdir()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+fs.chdir( "/tmp");
+</pre>
+<p>This function sets the current directory, or the current working directory, for the script.</P>
+<p align="right">See-also <a href="#cwd">cwd()</a></p>
+ </blockquote>
+
+
+ <h4 id="chmod">chmod()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+fs.chmod( "./a.out", 755 );
+</pre>
+<p>This function sets the permissions to the specified item to the given octal string.</p>
+<p align="right">See-also <a href="#chown">chown()</a></p>
+ </blockquote>
+
+ <h4 id="chown">chown()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+fs.chown("/bin/sh", "root", "root");
+fs.chown( "/bin/sh", 0, 0 );
+</pre>
+<p>This function changes the owner and group of the specified item.  The username or group name (second parameter) may be specified either as integers or as names which will be searched for in <tt>/etc/passwd</tt>.</p>
+<p align="right">See-also <a href="#chmod">chmod()</a></p>
+ </blockquote>
+
+
+ <h4 id="cwd">cwd()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+dir = fs.cwd();
+fs.chown( "/bin/sh", 0, 0 );
+</pre>
+<p>Find, and return, the current working dir.</p>
+<p align="right">See-also <a href="#chdir">chdir()</a></p>
+ </blockquote>
+
+ <h4 id="is_dir">is_dir()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+ret = fs.is_dir( "/etc" );
+</pre>
+<p>detect whether the specified item is a directory or not.  Return 'true' if it is, 'false' otherwise.</p>
+<p align="right">See-also <a href="#is_file">is_file()</a>, <a href="#stat">stat()</a></p>
+ </blockquote>
+
+ <h4 id="is_file">is_file()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+ret = fs.is_file( "/etc/passwd" );
+</pre>
+<p>detect whether the specified item is a file or not.  Return 'true' if it is, 'false' otherwise.</p>
+<p align="right">See-also <a href="#is_dir">is_dir()</a>, <a href="#stat">stat()</a></p>
+ </blockquote>
+
+ <h4 id="mkdir">mkdir()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+ret = fs.mkdir( "/tmp/bar" );
+</pre>
+<p>Create the named directory.</p>
+<p align="right">See-also <a href="#rmdir">rmdir()</a></p>
+ </blockquote>
+
+
+
+<h4 id="readdir">readdir()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+entries = fs.readdir( "/etc" );
+</pre>
+<p>Read and return a table containing all the directory entries beneath the given directory name.  (Not recursively.)</p>
+ </blockquote>
+
+<h4 id="rmdir">rmdir()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+entries = fs.rmdir( "/tmp/foo" );
+</pre>
+<p>Delete the specified directory entry.</p>
+<p align="right">See-also <a href="#mkdir">mkdir()</a></p>
+ </blockquote>
+
+ <h4 id="stat">stat()</h4>
+ <blockquote>
+  <p>Usage:</p>
+<pre>
+info = fs.stat( "/etc/passwd" );
+</pre>
+<p>Return a table of information about the specified directory entry.  The table has keys as follows:</p>
+<ul>
+<li>Owner information:
+ <ul>
+ <li><tt>uid</tt> - UID of the owner.</li>
+ <li><tt>gid</tt> - GID of the owner</li>
+ </ul></li>
+<li>Time Information
+ <ul>
+ <li><tt>access</tt> - Last Access time.</li>
+ <li><tt>change</tt> - Last status change time.</li>
+ <li><tt>modification</tt> - Last modification time.</li>
+ </ul></li>
+<li>Misc. Information
+ <ul>
+ <li><tt>ino</tt> - Inode number.</li> 
+ <li><tt>dev</tt> - Device.</li>
+ <li><tt>mode</tt> - Permissions.</li>
+ <li><tt>type</tt> - Entry type:
+ <ul>
+ <li>file.</li>
+ <li>socket.</li>
+ <li>directory.</li>
+ <li>&amp; etc.</li>
+ </ul></li>
+ <li><tt>nlink</tt> - Number of links to the file.</li>
+ <li><tt>rdev</tt> - Device type.</li> 
+ <li><tt>size</tt> - Size of the file.</li>
+ </ul></li>
+</ul>
+<p align="right">See-also <a href="#is_dir">is_dir()</a>, <a href="#is_file">is_file()</a></p>
+ </blockquote>
+
+
+</div>
+
+<div id="footer">
+<p><a href="http://www.steve.org.uk/Software/lua-fs">lau-fs</a></p>
+</div>
+ </body>
+</html>

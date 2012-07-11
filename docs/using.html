@@ -1,0 +1,45 @@
+<html>
+ <head><title>Using the lua-fs extension</title>
+ <link rel="stylesheet" type="text/css" href="style.css" media="screen" title="Default Layout">
+</head>
+ <body>
+
+
+<div id="sidebar">
+<ul>
+<li><a href="index.html">Index</a></li>
+<li><a href="using.html">Using lua-fs</a></li>
+<li><a href="manual.html">lua-fs API</a></li>
+<li><a href="examples.html">Example Code</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+ <h2>Using the Extension</h2> 
+ <blockquote>
+ <p>Once the library has been installed upon the system it will be automatically available for use by all your Lua scripts.</p>
+ <p>This is the preferred way to load the library and gain access to all the functions contained within it:</p>
+<pre>
+-- Load the library from the system installation
+socket = require( "libfs" );
+</pre>
+ <p>If you choose not to install the library system-wide you may instead load it via something like this:</p>
+<pre>
+-- Load the library from the current directory.
+fs = assert(loadlib("./libfs.so", "luaopen_libfs"))()
+
+-- Test it worked.
+print ( fs.version .. " loaded OK" );
+</pre>
+
+ <p>Once you've managed to load the library correctly you'll be ready to <a href="manual.html">use the provided API</a> to work with your filesystem.</p>
+ </blockquote>
+
+</div>
+
+<div id="footer">
+<p><a href="http://www.steve.org.uk/Software/lua-fs">lau-fs</a></p>
+</div>
+ </body>
+</html>
